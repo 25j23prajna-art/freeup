@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Chaos 😈</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Comic Sans MS', sans-serif;
+  background: linear-gradient(135deg,#ffb6d9,#c7b5ff);
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+  overflow-x: hidden;
+  color: #35143f;
+}
+
+.container {
+  max-width: 520px;
+  margin: 35px auto;
+  background: white;
+  padding: 28px 20px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #673b6b44;
+}
+
+h1 {
+  font-size: clamp(27px,7vw,38px);
+  margin-bottom: 12px;
+}
+
+p {
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 22px;
+  margin: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #ff5caa;
+  color: white;
+  cursor: pointer;
+  max-width: 100%;
+  touch-action: manipulation;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+.secondary {
+  background: #8960d8;
+}
+
+#message {
+  min-height: 55px;
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#runaway {
+  position: relative;
+  background: #332044;
+}
+
+#popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.popup-box {
+  background: white;
+  border-radius: 22px;
+  padding: 25px;
+  width: 100%;
+  max-width: 330px;
+  animation: pop .3s ease;
+}
+
+@keyframes pop {
+  from {transform: scale(.5);}
+  to {transform: scale(1);}
+}
+
+#count {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+#result {
+  font-weight: bold;
+  color: #e13d91;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>😈 Welcome to Chaos</h1>
+
+  <p>Congratulations! You have officially entered the most useless website ever.</p>
+
+  <p>There is absolutely no escape. 😂</p>
+
+  <div id="message">
+    Click a button. If you dare.
+  </div>
+
+  <button onclick="annoy()">Annoy Me 😭</button>
+
+  <button class="secondary" onclick="surprise()">
+    Give Me a Surprise 🎁
+  </button>
+
+  <hr style="margin:25px 0;border:1px solid #eee;">
+
+  <h3>🏃 Catch the button!</h3>
+  <p>Try pressing it. Good luck!</p>
+
+  <button id="runaway">Catch Me 😏</button>
+
+  <hr style="margin:25px 0;border:1px solid #eee;">
+
+  <h3>🧠 Impossible Challenge</h3>
+  <p>Click this button exactly 5 times.</p>
+
+  <div id="count">0 / 5</div>
+
+  <button class="secondary" onclick="challenge()">
+    Click Me!
+  </button>
+
+  <div id="result"></div>
+
+  <hr style="margin:25px 0;border:1px solid #eee;">
+
+  <button onclick="loading()">Hack the Website 💻</button>
+
+  <footer>
+    Made with love, chaos and absolutely no peace. 💗
+  </footer>
+
+</div>
+
+<div id="popup">
+  <div class="popup-box">
+    <h2 id="popupTitle">⚠️ WARNING!</h2>
+    <p id="popupText">Something suspicious happened.</p>
+    <button onclick="closePopup()">Okay, fine 🙄</button>
+  </div>
+</div>
+
+<script>
+
+const messages = [
+  "Your phone has been diagnosed with 100% laziness. 🤡",
+  "Stop clicking everything. Have some self-control!",
+  "Error 404: Brain not found. 💀",
+  "Congratulations! You wasted 5 seconds.",
+  "Your intelligence is buffering... 1%",
+  "Someone please take this phone away 😂",
+  "You thought something useful would happen?",
+  "Plot twist: You're the problem. 😭"
+];
+
+function annoy() {
+  const random = messages[
+    Math.floor(Math.random() * messages.length)
+  ];
+
+  document.getElementById("message").innerText = random;
+}
+
+function surprise() {
+  const surprises = [
+    "SURPRISE! You are officially annoying. 💗",
+    "Your secret talent is wasting time.",
+    "A chocolate would solve 99% of your problems. 🍫",
+    "Breaking news: You are still clicking!",
+    "Sending virtual hugs... FAILED. 😂"
+  ];
+
+  const random = surprises[
+    Math.floor(Math.random() * surprises.length)
+  ];
+
+  showPopup("🎁 SURPRISE!", random);
+}
+
+function showPopup(title, text) {
+  document.getElementById("popupTitle").innerText = title;
+  document.getElementById("popupText").innerText = text;
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+const runaway = document.getElementById("runaway");
+
+function moveButton() {
+  const maxX = Math.max(0, window.innerWidth - runaway.offsetWidth - 20);
+  const maxY = Math.max(0, window.innerHeight - runaway.offsetHeight - 20);
+
+  runaway.style.position = "fixed";
+  runaway.style.left = Math.random() * maxX + "px";
+  runaway.style.top = Math.random() * maxY + "px";
+}
+
+runaway.addEventListener("mouseenter", moveButton);
+runaway.addEventListener("touchstart", function(e) {
+  e.preventDefault();
+  moveButton();
+});
+
+let clicks = 0;
+
+function challenge() {
+  clicks++;
+
+  document.getElementById("count").innerText =
+    clicks + " / 5";
+
+  if (clicks === 5) {
+    document.getElementById("result").innerText =
+      "YOU WON NOTHING! 🏆😂";
+
+    showPopup("🏆 WINNER!", "Your prize is... absolutely nothing!");
+    clicks = 0;
+  }
+}
+
+function loading() {
+  let seconds = 5;
+
+  showPopup("💻 HACKING...", "Connecting to NASA servers...");
+
+  const text = document.getElementById("popupText");
+
+  text.innerText = "Hacking in " + seconds + "...";
+
+  const timer = setInterval(() => {
+    seconds--;
+
+    if (seconds > 0) {
+      text.innerText = "Hacking in " + seconds + "...";
+    } else {
+      clearInterval(timer);
+      text.innerText =
+        "ACCESS DENIED 😂 You really thought you were a hacker?";
+    }
+    }, 1000);
+}
+
+</script>
+
+</body>
+</html>
